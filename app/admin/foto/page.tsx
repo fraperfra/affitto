@@ -53,6 +53,18 @@ export default async function FotoPage() {
     revalidatePath('/')
   }
 
+  async function reorderPhotos(section: string, orderedIds: string[]) {
+    'use server'
+    const admin = createAdminClient()
+    await Promise.all(
+      orderedIds.map((id, index) =>
+        admin.from('photos').update({ order: index }).eq('id', id)
+      )
+    )
+    revalidatePath('/admin/foto')
+    revalidatePath('/')
+  }
+
   async function addPhotoRecord(section: string, storagePath: string, url: string) {
     'use server'
     const admin = createAdminClient()
@@ -105,6 +117,7 @@ export default async function FotoPage() {
               deletePhoto={deletePhoto}
               setCover={setCover}
               addPhotoRecord={addPhotoRecord}
+              reorderPhotos={reorderPhotos}
             />
           ))}
         </div>
