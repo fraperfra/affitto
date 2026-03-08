@@ -17,7 +17,7 @@ export async function getPhotosFromDB(): Promise<AllPhotos> {
 
     // Per ogni sezione che ha foto nel DB, usa quelle (altrimenti fallback statico)
     const result: AllPhotos = { ...staticPhotos }
-    const dbSections = new Set<string>(data.map((p: { section: string }) => p.section))
+    const dbSections = Array.from(new Set<string>(data.map((p: { section: string }) => p.section)))
 
     for (const section of dbSections) {
       result[section] = data
