@@ -18,7 +18,7 @@ export function ContractInfo() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <section id="contratto" className="py-24 px-4 bg-stone-50">
+    <section id="contratto" className="py-16 px-4 bg-stone-50">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Informazioni importanti</p>

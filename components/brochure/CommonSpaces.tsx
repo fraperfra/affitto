@@ -141,7 +141,7 @@ function SpaceCard({ space, index, allPhotos }: { space: typeof spaces[0]; index
 
 export function CommonSpaces({ allPhotos }: { allPhotos: AllPhotos }) {
   return (
-    <section id="spazi-comuni" className="py-24 px-4 bg-ivory">
+    <section id="spazi-comuni" className="py-16 px-4 bg-ivory">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Vivere insieme</p>
