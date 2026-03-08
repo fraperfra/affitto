@@ -20,7 +20,7 @@ export function Rooms({ allPhotos }: { allPhotos: AllPhotos }) {
             rent={500}
             expenses={40}
             photos={allPhotos['camera-1'] ?? []}
-            description="Camera matrimoniale/singola con bagno privato esclusivo, esterno alla camera. La soluzione ideale per chi cerca massima privacy e comfort. Ampia e luminosa, arredata con cura."
+            description="Camera matrimoniale/singola con bagno privato esclusivo, esterno alla camera. La soluzione ideale per chi cerca massima privacy e comfort. Ampia e luminosa, consegnata completa di arredo."
             delay={0}
           />
           <RoomCard
@@ -30,7 +30,7 @@ export function Rooms({ allPhotos }: { allPhotos: AllPhotos }) {
             rent={420}
             expenses={40}
             photos={allPhotos['camera-2'] ?? []}
-            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 3. Arredata con gusto, luminosa e ben proporzionata."
+            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 3. Luminosa e ben proporzionata, consegnata completa di arredo."
             delay={0.1}
           />
           <RoomCard
@@ -40,7 +40,7 @@ export function Rooms({ allPhotos }: { allPhotos: AllPhotos }) {
             rent={420}
             expenses={40}
             photos={allPhotos['camera-3'] ?? []}
-            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 2. Arredata con gusto, luminosa e ben proporzionata."
+            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 2. Luminosa e ben proporzionata, consegnata completa di arredo."
             delay={0.2}
           />
         </div>
