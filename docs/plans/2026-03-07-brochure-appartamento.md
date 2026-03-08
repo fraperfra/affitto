@@ -868,7 +868,7 @@ git add components/brochure/CommonSpaces.tsx && git commit -m "feat: sezione Spa
 
 ---
 
-## Task 10: Contratto & Utenze + Regole della Casa
+## Task 10: Contratto e Utenze + Regole della Casa
 
 **Files:**
 - Create: `components/brochure/ContractInfo.tsx`
