@@ -33,6 +33,7 @@ export const photos: Record<string, PhotoConfig[]> = {
     { src: '/images/soggiorno/2802533F-D35A-4A86-91FC-E91C07B2A423.png', alt: 'Soggiorno - vista 1', width: 1920, height: 1280 },
     { src: '/images/soggiorno/E1429E99-716D-48F6-A8C5-D3474D7568E8.png', alt: 'Soggiorno - vista 2', width: 1920, height: 1280 },
   ],
+  galleria: [],
   'bagno-condiviso': [
     { src: '/images/bagno-condiviso/0B08C374-FA30-4FFE-B416-C249C1DB73FB.png', alt: 'Bagno - vista 1', width: 1920, height: 1280 },
     { src: '/images/bagno-condiviso/1DE0C6CA-4582-45E9-8304-349A38D4EB99.png', alt: 'Bagno - vista 2', width: 1920, height: 1280 },

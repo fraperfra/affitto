@@ -4,7 +4,8 @@ import { revalidatePath } from 'next/cache'
 import { StatsCards } from '@/components/admin/StatsCards'
 import { CandidatureTable } from '@/components/admin/CandidatureTable'
 import type { Candidatura, StatoCandidatura } from '@/lib/types'
-import { LogOut } from 'lucide-react'
+import { LogOut, Images } from 'lucide-react'
+import Link from 'next/link'
 
 async function updateStato(id: string, stato: StatoCandidatura) {
   'use server'
@@ -31,21 +32,29 @@ export default async function DashboardPage() {
           <h1 className="font-serif text-xl text-anthracite">Dashboard Admin</h1>
           <p className="font-sans text-xs text-text-secondary">Gestione candidature — Appartamento RE</p>
         </div>
-        <form
-          action={async () => {
-            'use server'
-            const supabase = await createClient()
-            await supabase.auth.signOut()
-            redirect('/admin/login')
-          }}
-        >
-          <button
-            type="submit"
-            className="flex items-center gap-1.5 text-sm font-sans text-text-secondary hover:text-anthracite transition-colors"
+        <div className="flex items-center gap-4">
+          <Link
+            href="/admin/foto"
+            className="flex items-center gap-1.5 text-sm font-sans text-text-secondary hover:text-anthracite border border-stone-200 rounded-lg px-3 py-2 hover:bg-stone-50 transition-colors"
           >
-            <LogOut size={15} /> Esci
-          </button>
-        </form>
+            <Images size={15} /> Gestione Foto
+          </Link>
+          <form
+            action={async () => {
+              'use server'
+              const supabase = await createClient()
+              await supabase.auth.signOut()
+              redirect('/admin/login')
+            }}
+          >
+            <button
+              type="submit"
+              className="flex items-center gap-1.5 text-sm font-sans text-text-secondary hover:text-anthracite transition-colors"
+            >
+              <LogOut size={15} /> Esci
+            </button>
+          </form>
+        </div>
       </header>
       <main className="p-6 max-w-7xl mx-auto">
         <StatsCards candidature={(candidature as Candidatura[]) ?? []} />

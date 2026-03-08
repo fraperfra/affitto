@@ -2,7 +2,7 @@
 import { Trash2 } from 'lucide-react'
 
 interface Props {
-  deleteCandidatura: () => Promise<never>
+  deleteCandidatura: () => Promise<void>
 }
 
 export function DeleteCandidaturaButton({ deleteCandidatura }: Props) {

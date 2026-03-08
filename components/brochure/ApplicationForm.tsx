@@ -139,9 +139,9 @@ export function ApplicationForm() {
             <label className={labelClass}>Camera preferita *</label>
             <select {...register('camera_preferita')} className={inputClass}>
               <option value="">Seleziona...</option>
-              <option value="camera_1">Suite Privata — €540/mese</option>
-              <option value="camera_2">Camera Doppia/Singola (A) — €460/mese</option>
-              <option value="camera_3">Camera Doppia/Singola (B) — €460/mese</option>
+              <option value="camera_1">Camera 1 + Bagno Privato — €540/mese</option>
+              <option value="camera_2">Camera 2 — €460/mese</option>
+              <option value="camera_3">Camera 3 — €460/mese</option>
               <option value="indifferente">Indifferente</option>
             </select>
             <FieldError message={errors.camera_preferita?.message} />

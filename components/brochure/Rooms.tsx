@@ -1,7 +1,7 @@
 import { RoomCard } from './RoomCard'
-import { photos } from '@/lib/photos'
+import type { AllPhotos } from '@/lib/photos-db'
 
-export function Rooms() {
+export function Rooms({ allPhotos }: { allPhotos: AllPhotos }) {
   return (
     <section id="stanze" className="py-24 px-4 bg-stone-50">
       <div className="max-w-6xl mx-auto">
@@ -15,32 +15,32 @@ export function Rooms() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <RoomCard
-            name="Suite Privata"
+            name="Camera 1 + Bagno Privato"
             bathType="privato-esterno"
             rent={500}
             expenses={40}
-            photos={photos['camera-1']}
+            photos={allPhotos['camera-1'] ?? []}
             description="Camera matrimoniale/singola con bagno privato esclusivo, esterno alla camera. La soluzione ideale per chi cerca massima privacy e comfort. Ampia e luminosa, arredata con cura."
             delay={0}
           />
           <RoomCard
-            name="Camera Doppia/Singola (A)"
+            name="Camera 2"
             bathType="condiviso"
-            sharedWith="Camera B"
+            sharedWith="Camera 3"
             rent={420}
             expenses={40}
-            photos={photos['camera-2']}
-            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera B. Arredata con gusto, luminosa e ben proporzionata."
+            photos={allPhotos['camera-2'] ?? []}
+            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 3. Arredata con gusto, luminosa e ben proporzionata."
             delay={0.1}
           />
           <RoomCard
-            name="Camera Doppia/Singola (B)"
+            name="Camera 3"
             bathType="condiviso"
-            sharedWith="Camera A"
+            sharedWith="Camera 2"
             rent={420}
             expenses={40}
-            photos={photos['camera-3']}
-            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera A. Arredata con gusto, luminosa e ben proporzionata."
+            photos={allPhotos['camera-3'] ?? []}
+            description="Camera versatile, adatta sia a uso singolo che doppio. Condivide il bagno esclusivamente con la Camera 2. Arredata con gusto, luminosa e ben proporzionata."
             delay={0.2}
           />
         </div>

@@ -3,13 +3,23 @@ import { useEffect } from 'react'
 
 export function PhotoProtection() {
   useEffect(() => {
+    // --- Blocca window.print() (stampa via JS) ---
+    window.print = () => {}
+
+    // --- Blocca beforeprint (stampa da menu browser) ---
+    const blockPrint = () => {
+      document.body.style.setProperty('display', 'none', 'important')
+      setTimeout(() => document.body.style.removeProperty('display'), 1000)
+    }
+    window.addEventListener('beforeprint', blockPrint)
+
     // --- Blocca tasto destro sull'intera pagina ---
     const blockContextMenu = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (
         target.tagName === 'IMG' ||
         target.closest('[data-protected]') ||
-        target.closest('.yarl__slide') // yet-another-react-lightbox
+        target.closest('.yarl__slide')
       ) {
         e.preventDefault()
       }
@@ -27,8 +37,6 @@ export function PhotoProtection() {
     const blockShortcuts = (e: KeyboardEvent) => {
       const ctrl = e.ctrlKey || e.metaKey
 
-      // Blocca: Ctrl+S (salva), Ctrl+U (sorgente), Ctrl+Shift+I/J/C (devtools),
-      //         Ctrl+P (stampa), Ctrl+A (seleziona tutto), F12 (devtools)
       if (
         (ctrl && ['s', 'u', 'p', 'a'].includes(e.key.toLowerCase())) ||
         (ctrl && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) ||
@@ -57,6 +65,7 @@ export function PhotoProtection() {
       document.removeEventListener('dragstart', blockDrag)
       document.removeEventListener('keydown', blockShortcuts)
       document.removeEventListener('selectstart', blockSelectStart)
+      window.removeEventListener('beforeprint', blockPrint)
     }
   }, [])
 

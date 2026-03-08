@@ -73,20 +73,21 @@
   }
 }
 
-/* Nascondi tutte le immagini quando si stampa */
+/* Blocca completamente la stampa */
 @media print {
-  img,
-  [data-protected],
-  .yarl__root {
+  body > * {
     display: none !important;
     visibility: hidden !important;
   }
 
   body::before {
-    content: 'Le immagini sono protette da copyright e non possono essere riprodotte.';
-    display: block;
-    padding: 2rem;
-    font-size: 1rem;
+    content: 'Contenuto protetto da copyright. La stampa non è consentita.';
+    display: block !important;
+    visibility: visible !important;
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.1rem;
     color: #2C2C2C;
+    font-family: sans-serif;
   }
 }

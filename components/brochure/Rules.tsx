@@ -4,7 +4,7 @@ import { CigaretteOff, PawPrint, Clock, Wrench, Paintbrush, Users } from 'lucide
 
 const rules = [
   { icon: CigaretteOff, text: "Vietato fumare all'interno dell'appartamento" },
-  { icon: PawPrint, text: 'Animali domestici ammessi solo previo accordo esplicito con il proprietario' },
+  { icon: PawPrint, text: 'Animali domestici non ammessi' },
   { icon: Clock, text: 'Rispetto degli orari di silenzio: 22:00 – 08:00' },
   { icon: Wrench, text: 'Manutenzione ordinaria degli spazi comuni a carico dei coinquilini' },
   { icon: Paintbrush, text: "Nessuna modifica all'arredamento o alle pareti senza autorizzazione" },

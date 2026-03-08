@@ -1,9 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
 import { Building2, Zap, Wind, ChefHat, ShieldCheck, Layers, Sofa, Thermometer } from 'lucide-react'
-import { PhotoGallery } from './PhotoGallery'
-import { photos } from '@/lib/photos'
-
 const features = [
   { icon: Building2, label: 'Piano', value: 'Primo piano con ascensore' },
   { icon: Layers, label: 'Classe Energetica', value: 'A++ — Massima efficienza' },
@@ -51,15 +48,6 @@ export function Overview() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <h3 className="font-serif text-xl text-anthracite mb-6 text-center">Galleria Fotografica</h3>
-          <PhotoGallery photos={photos['appartamento']} columns={3} />
-        </motion.div>
       </div>
     </section>
   )

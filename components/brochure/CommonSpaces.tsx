@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { PhotoGallery } from './PhotoGallery'
 import { DetailModal } from './DetailModal'
-import { photos } from '@/lib/photos'
+import type { AllPhotos } from '@/lib/photos-db'
 
 const spaces = [
   {
@@ -25,9 +25,9 @@ const spaces = [
   },
 ]
 
-function SpaceCard({ space, index }: { space: typeof spaces[0]; index: number }) {
+function SpaceCard({ space, index, allPhotos }: { space: typeof spaces[0]; index: number; allPhotos: AllPhotos }) {
   const [open, setOpen] = useState(false)
-  const spacePhotos = photos[space.key as keyof typeof photos] ?? []
+  const spacePhotos = allPhotos[space.key] ?? []
 
   return (
     <>
@@ -139,7 +139,7 @@ function SpaceCard({ space, index }: { space: typeof spaces[0]; index: number })
   )
 }
 
-export function CommonSpaces() {
+export function CommonSpaces({ allPhotos }: { allPhotos: AllPhotos }) {
   return (
     <section id="spazi-comuni" className="py-24 px-4 bg-ivory">
       <div className="max-w-6xl mx-auto">
@@ -150,7 +150,7 @@ export function CommonSpaces() {
 
         <div className="flex flex-col gap-20">
           {spaces.map((space, i) => (
-            <SpaceCard key={space.key} space={space} index={i} />
+            <SpaceCard key={space.key} space={space} index={i} allPhotos={allPhotos} />
           ))}
         </div>
       </div>

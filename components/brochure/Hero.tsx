@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { photos } from '@/lib/photos'
+import type { PhotoConfig } from '@/lib/photos'
 
-export function Hero() {
-  const heroPhotos = photos['appartamento']
+export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {

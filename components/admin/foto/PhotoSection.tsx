@@ -1,0 +1,170 @@
+'use client'
+import { useState, useRef } from 'react'
+import Image from 'next/image'
+import { Star, Trash2, Upload, ChevronDown, ChevronUp, Loader2 } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
+
+export interface DBPhoto {
+  id: string
+  section: string
+  storage_path: string
+  url: string
+  alt: string
+  order: number
+  is_cover: boolean
+}
+
+interface Props {
+  sectionKey: string
+  sectionLabel: string
+  photos: DBPhoto[]
+  deletePhoto: (photoId: string, storagePath: string) => Promise<void>
+  setCover: (photoId: string, section: string) => Promise<void>
+  addPhotoRecord: (section: string, storagePath: string, url: string) => Promise<void>
+}
+
+export function PhotoSection({ sectionKey, sectionLabel, photos, deletePhoto, setCover, addPhotoRecord }: Props) {
+  const [open, setOpen] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [loadingId, setLoadingId] = useState<string | null>(null)
+  const [dragOver, setDragOver] = useState(false)
+  const fileRef = useRef<HTMLInputElement>(null)
+
+  const handleUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return
+    setUploading(true)
+    const supabase = createClient()
+
+    for (const file of Array.from(files)) {
+      const ext = file.name.split('.').pop()
+      const path = `${sectionKey}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+      const { error } = await supabase.storage.from('photos').upload(path, file, { upsert: false })
+      if (!error) {
+        const { data: { publicUrl } } = supabase.storage.from('photos').getPublicUrl(path)
+        await addPhotoRecord(sectionKey, path, publicUrl)
+      }
+    }
+
+    setUploading(false)
+    if (fileRef.current) fileRef.current.value = ''
+  }
+
+  const handleDelete = async (photo: DBPhoto) => {
+    if (!confirm('Eliminare questa foto definitivamente?')) return
+    setLoadingId(photo.id)
+    await deletePhoto(photo.id, photo.storage_path)
+    setLoadingId(null)
+  }
+
+  const handleSetCover = async (photo: DBPhoto) => {
+    setLoadingId(photo.id)
+    await setCover(photo.id, sectionKey)
+    setLoadingId(null)
+  }
+
+  return (
+    <div className="bg-white rounded-xl border border-stone-100 shadow-sm overflow-hidden">
+      {/* Header accordion */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center justify-between px-6 py-4 hover:bg-stone-50 transition-colors text-left"
+      >
+        <div className="flex items-center gap-3">
+          <span className="font-serif text-lg text-anthracite">{sectionLabel}</span>
+          <span className="font-sans text-xs text-text-secondary bg-stone-100 px-2 py-0.5 rounded-full">
+            {photos.length} foto
+          </span>
+        </div>
+        {open
+          ? <ChevronUp size={18} className="text-stone-400 shrink-0" />
+          : <ChevronDown size={18} className="text-stone-400 shrink-0" />}
+      </button>
+
+      {open && (
+        <div className="px-6 pb-6 border-t border-stone-100">
+          {/* Griglia foto */}
+          {photos.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-4 mb-4">
+              {photos.map(photo => (
+                <div key={photo.id} className="relative group rounded-lg overflow-hidden aspect-square bg-stone-100">
+                  <Image
+                    src={photo.url}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover"
+                    sizes="200px"
+                    unoptimized
+                  />
+
+                  {/* Badge copertina */}
+                  {photo.is_cover && (
+                    <div className="absolute top-2 left-2 bg-gold text-white text-[10px] font-sans px-2 py-0.5 rounded-full flex items-center gap-1 z-10">
+                      <Star size={10} fill="white" /> Copertina
+                    </div>
+                  )}
+
+                  {/* Overlay azioni */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 z-10">
+                    {loadingId === photo.id ? (
+                      <Loader2 size={20} className="text-white animate-spin" />
+                    ) : (
+                      <>
+                        {!photo.is_cover && (
+                          <button
+                            onClick={() => handleSetCover(photo)}
+                            className="bg-gold hover:bg-gold/90 text-white rounded-full p-2 transition-colors"
+                            title="Imposta come copertina"
+                          >
+                            <Star size={15} />
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDelete(photo)}
+                          className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition-colors"
+                          title="Elimina foto"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Upload area */}
+          <div
+            className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer ${
+              dragOver ? 'border-gold bg-gold/5' :
+              uploading ? 'border-gold/40 bg-gold/5' :
+              'border-stone-200 hover:border-gold/40 hover:bg-stone-50'
+            }`}
+            onClick={() => !uploading && fileRef.current?.click()}
+            onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+            onDragLeave={() => setDragOver(false)}
+            onDrop={e => { e.preventDefault(); setDragOver(false); handleUpload(e.dataTransfer.files) }}
+          >
+            {uploading ? (
+              <Loader2 size={28} className="mx-auto mb-2 text-gold animate-spin" />
+            ) : (
+              <Upload size={28} className="mx-auto mb-2 text-stone-400" strokeWidth={1.5} />
+            )}
+            <p className="font-sans text-sm text-text-secondary">
+              {uploading ? 'Caricamento in corso...' : 'Clicca o trascina le foto qui'}
+            </p>
+            <p className="font-sans text-xs text-stone-400 mt-1">JPG, PNG, WebP · Puoi selezionare più file</p>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              className="hidden"
+              onChange={e => handleUpload(e.target.files)}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

@@ -6,9 +6,9 @@ import { StatusCandidatoBadge } from './StatusBadge'
 import { Search, Download, ExternalLink } from 'lucide-react'
 
 const CAMERA_LABELS: Record<string, string> = {
-  camera_1: 'Suite Privata',
-  camera_2: 'Camera A',
-  camera_3: 'Camera B',
+  camera_1: 'Camera 1 + Bagno Privato',
+  camera_2: 'Camera 2',
+  camera_3: 'Camera 3',
   indifferente: 'Indifferente',
 }
 
@@ -83,9 +83,9 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
         </select>
         <select value={filterCamera} onChange={e => setFilterCamera(e.target.value)} className={sel}>
           <option value="">Tutte le camere</option>
-          <option value="camera_1">Suite Privata</option>
-          <option value="camera_2">Camera A</option>
-          <option value="camera_3">Camera B</option>
+          <option value="camera_1">Camera 1 + Bagno Privato</option>
+          <option value="camera_2">Camera 2</option>
+          <option value="camera_3">Camera 3</option>
           <option value="indifferente">Indifferente</option>
         </select>
         <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className={sel}>

@@ -8,9 +8,9 @@ import { DeleteCandidaturaButton } from '@/components/admin/DeleteCandidaturaBut
 import { ArrowLeft } from 'lucide-react'
 
 const CAMERA_LABELS: Record<string, string> = {
-  camera_1: 'Suite Privata (€540/mese)',
-  camera_2: 'Camera Doppia/Singola A (€460/mese)',
-  camera_3: 'Camera Doppia/Singola B (€460/mese)',
+  camera_1: 'Camera 1 + Bagno Privato (€540/mese)',
+  camera_2: 'Camera 2 (€460/mese)',
+  camera_3: 'Camera 3 (€460/mese)',
   indifferente: 'Indifferente',
 }
 
