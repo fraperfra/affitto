@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 17%;
+    --primary: 0 0% 17%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 17%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 38 45% 60%;
+    --accent-foreground: 0 0% 17%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 38 45% 60%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FAFAF7;
+    color: #2C2C2C;
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-playfair), serif;
+  }
+}
+
+/* ============================================
+   PROTEZIONE FOTO
+   ============================================ */
+
+@layer base {
+  /* Nessuna selezione o drag sulle immagini */
+  img,
+  [data-protected] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    pointer-events: none;
+  }
+
+  /* Overlay invisibile sopra le immagini protette:
+     blocca il click diretto sull'<img> ma non sul wrapper */
+  [data-protected] {
+    position: relative;
+    pointer-events: auto; /* il wrapper riceve i click */
+  }
+
+  [data-protected]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    cursor: default;
+  }
+}
+
+/* Nascondi tutte le immagini quando si stampa */
+@media print {
+  img,
+  [data-protected],
+  .yarl__root {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  body::before {
+    content: 'Le immagini sono protette da copyright e non possono essere riprodotte.';
+    display: block;
+    padding: 2rem;
+    font-size: 1rem;
+    color: #2C2C2C;
+  }
+}

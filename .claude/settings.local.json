@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npx create-next-app@14:*)",
+      "Bash(cp:*)",
+      "Bash(DST=\"/c/Users/FRANCESCO COPPOLA/Desktop/Brochure\")",
+      "Read(//c/Users/FRANCESCO COPPOLA/Desktop/Brochure/**)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest:*)",
+      "Bash(BASE=\"/c/Users/FRANCESCO COPPOLA/Desktop/Brochure/public/images\")",
+      "Bash(mkdir -p \"$BASE/appartamento\" \"$BASE/camera-1\" \"$BASE/camera-2\" \"$BASE/camera-3\" \"$BASE/cucina\" \"$BASE/soggiorno\" \"$BASE/bagno-condiviso\")",
+      "Bash(touch \"$BASE/appartamento/.gitkeep\" \"$BASE/camera-1/.gitkeep\" \"$BASE/camera-2/.gitkeep\" \"$BASE/camera-3/.gitkeep\" \"$BASE/cucina/.gitkeep\" \"$BASE/soggiorno/.gitkeep\" \"$BASE/bagno-condiviso/.gitkeep\")",
+      "Bash(BASE=\"/c/Users/FRANCESCO COPPOLA/Desktop/Brochure/components\")",
+      "Bash(mkdir -p \"$BASE/brochure\" \"$BASE/admin\")",
+      "Bash(touch \"$BASE/brochure/.gitkeep\" \"$BASE/admin/.gitkeep\")",
+      "Bash(npx tsc:*)",
+      "Bash(ls:*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(gh auth:*)"
+    ]
+  }
+}

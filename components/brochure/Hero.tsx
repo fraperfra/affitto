@@ -1,0 +1,111 @@
+'use client'
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
+import { photos } from '@/lib/photos'
+
+export function Hero() {
+  const heroPhotos = photos['appartamento']
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (heroPhotos.length <= 1) return
+    const timer = setInterval(() => setCurrent(c => (c + 1) % heroPhotos.length), 5000)
+    return () => clearInterval(timer)
+  }, [heroPhotos.length])
+
+  return (
+    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      {heroPhotos.length === 0 ? (
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900" />
+      ) : (
+        heroPhotos.map((photo, i) => (
+          <div
+            key={i}
+            data-protected
+            className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              priority={i === 0}
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+        ))
+      )}
+
+      <div className="absolute inset-0 bg-black/45" />
+
+      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-sans text-gold uppercase tracking-[0.3em] text-sm mb-4"
+        >
+          Centro Storico · Reggio Emilia
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6"
+        >
+          Appartamento di Pregio
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="font-sans text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10"
+        >
+          Eleganza e comfort nel cuore della città. Completamente arredato, classe energetica A++, cucina SMEG.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex gap-4 justify-center flex-wrap"
+        >
+          <a
+            href="#appartamento"
+            className="bg-gold hover:bg-gold/90 text-white font-sans font-medium px-8 py-3.5 rounded-full transition-all hover:scale-105 active:scale-95"
+          >
+            Scopri l&apos;appartamento
+          </a>
+          <a
+            href="#candidatura"
+            className="border border-white/60 hover:border-white text-white font-sans font-medium px-8 py-3.5 rounded-full transition-all hover:bg-white/10"
+          >
+            Invia candidatura
+          </a>
+        </motion.div>
+      </div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60"
+      >
+        <ChevronDown size={28} />
+      </motion.div>
+
+      {heroPhotos.length > 1 && (
+        <div className="absolute bottom-8 right-8 flex gap-2">
+          {heroPhotos.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-gold scale-125' : 'bg-white/40'}`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
