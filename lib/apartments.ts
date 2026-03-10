@@ -30,7 +30,7 @@ export const apartments: Apartment[] = [
     longDescription: 'Spazioso e luminoso, l\'Appartamento 1 offre tre camere da letto indipendenti, due bagni, una grande cucina abitabile e un soggiorno confortevole. Ideale per famiglie o coinquilini che cercano spazio e comfort.',
     price: 1200,
     floor: 'Primo piano',
-    amenities: ['Wi-Fi incluso', 'Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice', 'Cucina equipaggiata'],
+    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice', 'Cucina equipaggiata'],
     details: [
       { label: 'Piano', value: '1°' },
       { label: 'Camere da letto', value: '3' },
@@ -57,7 +57,7 @@ export const apartments: Apartment[] = [
     longDescription: 'L\'Appartamento 2 è una soluzione elegante e funzionale: camera da letto con bagno en-suite, un secondo bagno, cucina abitabile, salotto, lavanderia privata, terrazzo e anticamera. Perfetto per chi cerca un nido accogliente con spazi ben organizzati.',
     price: 1200,
     floor: 'Primo piano',
-    amenities: ['Wi-Fi incluso', 'Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice in lavanderia privata', 'Terrazzo privato', 'Cucina equipaggiata'],
+    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice in lavanderia privata', 'Terrazzo privato', 'Cucina equipaggiata'],
     details: [
       { label: 'Piano', value: '1°' },
       { label: 'Camera da letto', value: '1 (en-suite)' },
