@@ -53,7 +53,7 @@ export const apartments: Apartment[] = [
     id: '2',
     name: 'Appartamento 2',
     slug: '2',
-    description: 'Appartamento con terrazzo, camera en-suite, lavanderia e ampio salotto.',
+    description: 'Appartamento con terrazza in camera da letto, bagno en-suite, secondo bagno, lavanderia, cucina abitabile e ampio salotto.',
     longDescription: 'L\'Appartamento 2 è una soluzione elegante e funzionale: camera da letto con bagno en-suite, un secondo bagno, cucina abitabile, salotto, lavanderia privata, terrazzo e anticamera. Perfetto per chi cerca un nido accogliente con spazi ben organizzati.',
     price: 1200,
     floor: 'Primo piano',
