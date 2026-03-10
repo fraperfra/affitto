@@ -5,10 +5,9 @@ import type { Candidatura, StatoCandidatura } from '@/lib/types'
 import { StatusCandidatoBadge } from './StatusBadge'
 import { Search, Download, ExternalLink } from 'lucide-react'
 
-const CAMERA_LABELS: Record<string, string> = {
-  camera_1: 'Camera 1 + Bagno Privato',
-  camera_2: 'Camera 2',
-  camera_3: 'Camera 3',
+const APPARTAMENTO_LABELS: Record<string, string> = {
+  appartamento_1: 'Appartamento 1',
+  appartamento_2: 'Appartamento 2',
   indifferente: 'Indifferente',
 }
 
@@ -21,17 +20,17 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
   const router = useRouter()
   const [search, setSearch] = useState('')
   const [filterStato, setFilterStato] = useState('')
-  const [filterCamera, setFilterCamera] = useState('')
+  const [filterApartment, setFilterApartment] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
   const [updatingId, setUpdatingId] = useState<string | null>(null)
 
   const filtered = useMemo(() => candidature.filter(c => {
     const matchSearch = !search || `${c.nome} ${c.cognome} ${c.email}`.toLowerCase().includes(search.toLowerCase())
     const matchStato = !filterStato || c.stato_candidatura === filterStato
-    const matchCamera = !filterCamera || c.camera_preferita === filterCamera
+    const matchApartment = !filterApartment || c.appartamento_preferito === filterApartment
     const matchStatus = !filterStatus || c.status === filterStatus
-    return matchSearch && matchStato && matchCamera && matchStatus
-  }), [candidature, search, filterStato, filterCamera, filterStatus])
+    return matchSearch && matchStato && matchApartment && matchStatus
+  }), [candidature, search, filterStato, filterApartment, filterStatus])
 
   const handleStato = async (id: string, stato: StatoCandidatura) => {
     setUpdatingId(id)
@@ -41,12 +40,12 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
   }
 
   const exportCSV = () => {
-    const headers = ['Data', 'Nome', 'Cognome', 'Email', 'Telefono', 'Status', 'Camera', 'Stato']
+    const headers = ['Data', 'Nome', 'Cognome', 'Email', 'Telefono', 'Status', 'Appartamento', 'Stato']
     const rows = filtered.map(c => [
       new Date(c.created_at).toLocaleDateString('it-IT'),
       c.nome, c.cognome, c.email, c.telefono,
       c.status,
-      CAMERA_LABELS[c.camera_preferita] ?? c.camera_preferita,
+      APPARTAMENTO_LABELS[c.appartamento_preferito] ?? c.appartamento_preferito,
       c.stato_candidatura,
     ])
     const csv = [headers, ...rows].map(r => r.join(';')).join('\n')
@@ -81,16 +80,14 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
           <option value="accettata">Accettata</option>
           <option value="rifiutata">Rifiutata</option>
         </select>
-        <select value={filterCamera} onChange={e => setFilterCamera(e.target.value)} className={sel}>
-          <option value="">Tutte le camere</option>
-          <option value="camera_1">Camera 1 + Bagno Privato</option>
-          <option value="camera_2">Camera 2</option>
-          <option value="camera_3">Camera 3</option>
+        <select value={filterApartment} onChange={e => setFilterApartment(e.target.value)} className={sel}>
+          <option value="">Tutti gli appartamenti</option>
+          <option value="appartamento_1">Appartamento 1</option>
+          <option value="appartamento_2">Appartamento 2</option>
           <option value="indifferente">Indifferente</option>
         </select>
         <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className={sel}>
           <option value="">Tutti i profili</option>
-          <option value="studente">Studente</option>
           <option value="lavoratore">Lavoratore</option>
           <option value="autonomo">Autonomo</option>
           <option value="altro">Altro</option>
@@ -108,7 +105,7 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
         <table className="w-full font-sans text-sm">
           <thead className="bg-stone-50 border-b border-stone-100">
             <tr>
-              {['Data', 'Candidato', 'Profilo', 'Camera', 'Email', 'Telefono', 'Stato', 'Azioni'].map(h => (
+              {['Data', 'Candidato', 'Profilo', 'Appartamento', 'Email', 'Telefono', 'Stato', 'Azioni'].map(h => (
                 <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">
                   {h}
                 </th>
@@ -134,7 +131,7 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
                   <StatusCandidatoBadge status={c.status} />
                 </td>
                 <td className="px-4 py-3 text-text-secondary whitespace-nowrap">
-                  {CAMERA_LABELS[c.camera_preferita] ?? c.camera_preferita}
+                  {APPARTAMENTO_LABELS[c.appartamento_preferito] ?? c.appartamento_preferito}
                 </td>
                 <td className="px-4 py-3">
                   <a href={`mailto:${c.email}`} className="text-gold hover:underline">

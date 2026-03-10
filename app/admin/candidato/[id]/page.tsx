@@ -7,11 +7,18 @@ import { StatoCandidaturaBadge, StatusCandidatoBadge } from '@/components/admin/
 import { DeleteCandidaturaButton } from '@/components/admin/DeleteCandidaturaButton'
 import { ArrowLeft } from 'lucide-react'
 
-const CAMERA_LABELS: Record<string, string> = {
-  camera_1: 'Camera 1 + Bagno Privato (€540/mese)',
-  camera_2: 'Camera 2 (€460/mese)',
-  camera_3: 'Camera 3 (€460/mese)',
+const APPARTAMENTO_LABELS: Record<string, string> = {
+  appartamento_1: 'Appartamento 1',
+  appartamento_2: 'Appartamento 2',
   indifferente: 'Indifferente',
+}
+
+const DURATA_PERMANENZA_LABELS: Record<string, string> = {
+  '6_mesi': '6 mesi',
+  '12_mesi': '12 mesi',
+  '18_mesi': '18 mesi',
+  '24_mesi': '24 mesi',
+  'oltre_2_anni': 'Oltre 2 anni',
 }
 
 export default async function CandidatoPage({ params }: { params: { id: string } }) {
@@ -87,7 +94,8 @@ export default async function CandidatoPage({ params }: { params: { id: string }
             <dl className="space-y-1">
               <Row label="Email" value={c.email} />
               <Row label="Telefono" value={c.telefono} />
-              <Row label="Camera preferita" value={CAMERA_LABELS[c.camera_preferita] ?? c.camera_preferita} />
+              <Row label="Appartamento preferito" value={APPARTAMENTO_LABELS[c.appartamento_preferito] ?? c.appartamento_preferito} />
+              <Row label="Durata permanenza" value={DURATA_PERMANENZA_LABELS[c.durata_permanenza] ?? c.durata_permanenza} />
             </dl>
           </section>
 
@@ -106,14 +114,6 @@ export default async function CandidatoPage({ params }: { params: { id: string }
                 <>
                   <Row label="Tipo attività" value={c.tipo_attivita} />
                   <Row label="Settore" value={c.settore} />
-                </>
-              )}
-              {c.status === 'studente' && (
-                <>
-                  <Row label="Università" value={c.universita} />
-                  <Row label="Garanzie" value={c.garanzie?.replace(/_/g, ' ')} />
-                  <Row label="Contratto garante" value={c.tipo_contratto_garante} />
-                  <Row label="Azienda garante" value={c.azienda_garante} />
                 </>
               )}
             </dl>

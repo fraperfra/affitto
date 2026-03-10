@@ -77,7 +77,7 @@ export function ApplicationForm() {
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Candidati ora</p>
           <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Form di Candidatura</h2>
           <p className="font-sans text-text-secondary">
-            Compila il form per candidarti a una delle camere disponibili.
+            Compila il form per candidarti a uno dei nostri appartamenti.
           </p>
         </div>
 
@@ -131,20 +131,35 @@ export function ApplicationForm() {
             </div>
           </div>
 
-          {/* Camera preferita */}
+          {/* Appartamento preferito e Durata permanenza */}
           <div>
             <h3 className="font-serif text-lg text-anthracite mb-4 pb-2 border-b border-stone-100">
-              Camera di Interesse
+              Appartamento e Permanenza
             </h3>
-            <label className={labelClass}>Camera preferita *</label>
-            <select {...register('camera_preferita')} className={inputClass}>
-              <option value="">Seleziona...</option>
-              <option value="camera_1">Camera 1 + Bagno Privato — €540/mese</option>
-              <option value="camera_2">Camera 2 — €460/mese</option>
-              <option value="camera_3">Camera 3 — €460/mese</option>
-              <option value="indifferente">Indifferente</option>
-            </select>
-            <FieldError message={errors.camera_preferita?.message} />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass}>Appartamento preferito *</label>
+                <select {...register('appartamento_preferito')} className={inputClass}>
+                  <option value="">Seleziona...</option>
+                  <option value="appartamento_1">Appartamento 1</option>
+                  <option value="appartamento_2">Appartamento 2</option>
+                  <option value="indifferente">Indifferente</option>
+                </select>
+                <FieldError message={errors.appartamento_preferito?.message} />
+              </div>
+              <div>
+                <label className={labelClass}>Durata permanenza *</label>
+                <select {...register('durata_permanenza')} className={inputClass}>
+                  <option value="">Seleziona...</option>
+                  <option value="6_mesi">6 mesi</option>
+                  <option value="12_mesi">12 mesi</option>
+                  <option value="18_mesi">18 mesi</option>
+                  <option value="24_mesi">24 mesi</option>
+                  <option value="oltre_2_anni">Oltre 2 anni</option>
+                </select>
+                <FieldError message={errors.durata_permanenza?.message} />
+              </div>
+            </div>
           </div>
 
           {/* Status */}
@@ -157,7 +172,6 @@ export function ApplicationForm() {
               {[
                 { value: 'lavoratore', label: 'Lavoratore dipendente' },
                 { value: 'autonomo', label: 'Lavoratore autonomo' },
-                { value: 'studente', label: 'Studente' },
                 { value: 'altro', label: 'Altro' },
               ].map(opt => (
                 <label key={opt.value} className="flex items-center gap-2.5 cursor-pointer group">
@@ -234,53 +248,6 @@ export function ApplicationForm() {
             </motion.div>
           )}
 
-          {/* Campi condizionali — Studente */}
-          {status === 'studente' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              className="space-y-4"
-            >
-              <div>
-                <label className={labelClass}>Università / Istituto *</label>
-                <input
-                  {...register('universita')}
-                  placeholder="Es. Università di Bologna"
-                  className={inputClass}
-                />
-                <FieldError message={errors.universita?.message} />
-              </div>
-              <div>
-                <label className={labelClass}>Garanzie familiari *</label>
-                <select {...register('garanzie')} className={inputClass}>
-                  <option value="">Seleziona...</option>
-                  <option value="1_genitore">1 genitore garante</option>
-                  <option value="2_genitori">2 genitori garanti</option>
-                  <option value="nessuno">Nessun garante</option>
-                </select>
-                <FieldError message={errors.garanzie?.message} />
-              </div>
-              <div>
-                <label className={labelClass}>Tipologia contratto del/dei garante/i</label>
-                <select {...register('tipo_contratto_garante')} className={inputClass}>
-                  <option value="">Seleziona...</option>
-                  <option value="indeterminato">Tempo indeterminato</option>
-                  <option value="determinato">Tempo determinato</option>
-                  <option value="pensionato">Pensionato</option>
-                  <option value="autonomo">Lavoratore autonomo</option>
-                  <option value="altro">Altro</option>
-                </select>
-              </div>
-              <div>
-                <label className={labelClass}>Nome azienda / datore del garante</label>
-                <input
-                  {...register('azienda_garante')}
-                  placeholder="Es. Comune di RE, Azienda SPA"
-                  className={inputClass}
-                />
-              </div>
-            </motion.div>
-          )}
 
           {/* Note aggiuntive */}
           <div>
