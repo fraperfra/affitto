@@ -34,13 +34,13 @@ export function PhotoTabs({ sections, photosBySection, deletePhoto, setCover, ad
 
   return (
     <div>
-      <div className="flex gap-1 mb-6 bg-white/5 rounded-xl p-1 w-fit">
+      <div className="flex gap-1 mb-6 bg-stone-100 rounded-xl p-1 w-fit">
         {TABS.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
             className={`px-5 py-2 rounded-lg font-sans text-sm transition-all ${
-              active === tab.id ? 'bg-[#C9A96E] text-white' : 'text-white/50 hover:text-white/80'
+              active === tab.id ? 'bg-[#C9A96E] text-white' : 'text-stone-500 hover:text-stone-700'
             }`}
           >
             {tab.label}
