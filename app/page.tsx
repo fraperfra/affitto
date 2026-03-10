@@ -1,7 +1,7 @@
 import { Header } from '@/components/brochure/Header'
 import { Hero } from '@/components/brochure/Hero'
 import { Overview } from '@/components/brochure/Overview'
-import { Rooms } from '@/components/brochure/Rooms'
+import { Apartments } from '@/components/brochure/Apartments'
 import { CommonSpaces } from '@/components/brochure/CommonSpaces'
 import { Gallery } from '@/components/brochure/Gallery'
 import { ContractInfo } from '@/components/brochure/ContractInfo'
@@ -20,7 +20,7 @@ export default async function HomePage() {
       <main>
         <Hero photos={allPhotos['appartamento'] ?? []} />
         <Overview />
-        <Rooms allPhotos={allPhotos} />
+        <Apartments allPhotos={allPhotos} />
         <CommonSpaces allPhotos={allPhotos} />
         <Gallery photos={allPhotos['galleria'] ?? []} />
         <ContractInfo />
