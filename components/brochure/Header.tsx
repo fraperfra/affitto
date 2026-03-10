@@ -22,8 +22,7 @@ export function Header() {
 
         {/* Nav sinistra — solo desktop */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="#stanze" className="font-sans text-xs text-text-secondary hover:text-anthracite tracking-wider uppercase transition-colors">Le Stanze</Link>
-          <Link href="#spazi-comuni" className="font-sans text-xs text-text-secondary hover:text-anthracite tracking-wider uppercase transition-colors">Spazi Comuni</Link>
+          <Link href="#appartamenti" className="font-sans text-xs text-text-secondary hover:text-anthracite tracking-wider uppercase transition-colors">Appartamenti</Link>
         </nav>
 
         {/* Nav destra — solo desktop */}

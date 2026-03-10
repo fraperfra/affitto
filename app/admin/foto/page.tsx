@@ -31,7 +31,6 @@ const APARTMENT_SECTIONS = {
   ],
   comune: [
     { key: 'galleria', label: '🖼 Galleria Fotografica' },
-    { key: 'spazi-comuni', label: '🏠 Spazi Comuni' },
   ],
 }
 
