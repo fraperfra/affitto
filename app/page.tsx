@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Header } from '@/components/brochure/Header'
 import { Hero } from '@/components/brochure/Hero'
 import { Overview } from '@/components/brochure/Overview'
@@ -62,10 +63,13 @@ export default async function HomePage() {
             </a>
           </div>
 
-          <div className="w-full border-t border-white/10 pt-6 text-center">
+          <div className="w-full border-t border-white/10 pt-6 flex flex-col items-center gap-2 text-center">
             <p className="font-sans text-xs text-white/30">
-              © {new Date().getFullYear()} Immobiliare Diba · Appartamento di Pregio, Centro Storico Reggio Emilia
+              © {new Date().getFullYear()} Immobiliare Diba · Appartamenti di Pregio, Centro Storico Reggio Emilia
             </p>
+            <Link href="/privacy" className="font-sans text-xs text-white/20 hover:text-white/50 transition-colors">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </footer>
