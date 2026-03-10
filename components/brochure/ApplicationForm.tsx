@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Loader2 } from 'lucide-react'
+import type { AppartamentoPreferito } from '@/lib/types'
 import { candidaturaSchema, type CandidaturaFormData } from '@/lib/validations/candidatura'
 
 function FieldError({ message }: { message?: string }) {
@@ -15,7 +16,7 @@ const inputClass =
   'w-full border border-stone-200 rounded-lg px-4 py-3 font-sans text-sm text-anthracite bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all placeholder:text-stone-400'
 const labelClass = 'block font-sans text-sm font-medium text-anthracite mb-1.5'
 
-export function ApplicationForm() {
+export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?: AppartamentoPreferito } = {}) {
   const [submitted, setSubmitted] = useState(false)
   const [serverError, setServerError] = useState('')
 
@@ -26,7 +27,10 @@ export function ApplicationForm() {
     formState: { errors, isSubmitting },
   } = useForm<CandidaturaFormData>({
     resolver: zodResolver(candidaturaSchema),
-    defaultValues: { consenso_privacy: false },
+    defaultValues: {
+      consenso_privacy: false,
+      appartamento_preferito: defaultAppartamento ?? 'indifferente',
+    },
   })
 
   const status = watch('status')

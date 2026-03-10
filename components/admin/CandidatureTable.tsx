@@ -11,6 +11,14 @@ const APPARTAMENTO_LABELS: Record<string, string> = {
   indifferente: 'Indifferente',
 }
 
+const DURATA_LABELS: Record<string, string> = {
+  '6_mesi': '6 mesi',
+  '12_mesi': '12 mesi',
+  '18_mesi': '18 mesi',
+  '24_mesi': '24 mesi',
+  'oltre_2_anni': 'Oltre 2 anni',
+}
+
 interface Props {
   candidature: Candidatura[]
   onUpdateStato: (id: string, stato: StatoCandidatura) => Promise<void>
@@ -20,17 +28,17 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
   const router = useRouter()
   const [search, setSearch] = useState('')
   const [filterStato, setFilterStato] = useState('')
-  const [filterApartment, setFilterApartment] = useState('')
+  const [filterAppartamento, setFilterAppartamento] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
   const [updatingId, setUpdatingId] = useState<string | null>(null)
 
   const filtered = useMemo(() => candidature.filter(c => {
     const matchSearch = !search || `${c.nome} ${c.cognome} ${c.email}`.toLowerCase().includes(search.toLowerCase())
     const matchStato = !filterStato || c.stato_candidatura === filterStato
-    const matchApartment = !filterApartment || c.appartamento_preferito === filterApartment
+    const matchAppartamento = !filterAppartamento || c.appartamento_preferito === filterAppartamento
     const matchStatus = !filterStatus || c.status === filterStatus
-    return matchSearch && matchStato && matchApartment && matchStatus
-  }), [candidature, search, filterStato, filterApartment, filterStatus])
+    return matchSearch && matchStato && matchAppartamento && matchStatus
+  }), [candidature, search, filterStato, filterAppartamento, filterStatus])
 
   const handleStato = async (id: string, stato: StatoCandidatura) => {
     setUpdatingId(id)
@@ -40,12 +48,13 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
   }
 
   const exportCSV = () => {
-    const headers = ['Data', 'Nome', 'Cognome', 'Email', 'Telefono', 'Status', 'Appartamento', 'Stato']
+    const headers = ['Data', 'Nome', 'Cognome', 'Email', 'Telefono', 'Status', 'Appartamento', 'Durata', 'Stato']
     const rows = filtered.map(c => [
       new Date(c.created_at).toLocaleDateString('it-IT'),
       c.nome, c.cognome, c.email, c.telefono,
       c.status,
       APPARTAMENTO_LABELS[c.appartamento_preferito] ?? c.appartamento_preferito,
+      DURATA_LABELS[c.durata_permanenza] ?? c.durata_permanenza,
       c.stato_candidatura,
     ])
     const csv = [headers, ...rows].map(r => r.join(';')).join('\n')
@@ -80,7 +89,7 @@ export function CandidatureTable({ candidature, onUpdateStato }: Props) {
           <option value="accettata">Accettata</option>
           <option value="rifiutata">Rifiutata</option>
         </select>
-        <select value={filterApartment} onChange={e => setFilterApartment(e.target.value)} className={sel}>
+        <select value={filterAppartamento} onChange={e => setFilterAppartamento(e.target.value)} className={sel}>
           <option value="">Tutti gli appartamenti</option>
           <option value="appartamento_1">Appartamento 1</option>
           <option value="appartamento_2">Appartamento 2</option>
