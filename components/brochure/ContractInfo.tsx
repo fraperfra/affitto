@@ -5,12 +5,24 @@ import { useState } from 'react'
 
 const faqs = [
   {
-    q: 'Posso uscire anticipatamente dal contratto?',
-    a: "Questa possibilità va concordata direttamente con il locatore. Il contratto è unico e intestato a tutti i coinquilini, pertanto qualsiasi variazione richiede l'accordo di tutte le parti.",
+    q: "Qual è la durata del contratto?",
+    a: "La durata viene concordata direttamente con il locatore in base alle singole esigenze dell'inquilino. Contattaci per valutare insieme la soluzione più adatta.",
   },
   {
-    q: 'Come vengono divise le utenze?',
-    a: "È attiva una sola bolletta (luce/gas/internet) co-intestata tra i coinquilini. La gestione e suddivisione delle spese avviene internamente tra gli inquilini con le modalità che preferiscono.",
+    q: "A quanto ammonta l'affitto mensile?",
+    a: "Il canone mensile si concorderà con il locatore in base alle esigenze e alla durata del contratto. Invia la tua candidatura e ti contatteremo con tutti i dettagli.",
+  },
+  {
+    q: "Le utenze sono incluse nell'affitto?",
+    a: "No. Le utenze (luce, gas, acqua) sono interamente a carico dell'inquilino. Le modalità di attivazione e gestione verranno concordate al momento della firma del contratto.",
+  },
+  {
+    q: "È richiesta una caparra?",
+    a: "Sì, è previsto un deposito cauzionale il cui importo verrà concordato con il locatore prima della firma. La caparra viene restituita al termine del contratto, previa verifica dello stato dell'appartamento.",
+  },
+  {
+    q: "Posso uscire anticipatamente dal contratto?",
+    a: "Questa possibilità va concordata direttamente con il locatore. Qualsiasi variazione contrattuale richiede l'accordo scritto di entrambe le parti.",
   },
 ]
 
@@ -22,7 +34,7 @@ export function ContractInfo() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Informazioni importanti</p>
-          <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Contratto &amp; Utenze</h2>
+          <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Contratto e Utenze</h2>
         </div>
 
         <motion.div
@@ -37,17 +49,14 @@ export function ContractInfo() {
           </div>
           <div className="font-sans text-text-secondary leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              L&apos;appartamento prevede{' '}
-              <strong className="text-anthracite">un unico contratto di locazione</strong>, intestato
-              congiuntamente a tutti e tre gli inquilini (co-intestatari). Analogamente, sarà attiva{' '}
-              <strong className="text-anthracite">una sola utenza</strong> (luce/gas/internet) co-intestata
-              tra i coinquilini.
+              Il canone mensile e le condizioni contrattuali{' '}
+              <strong className="text-anthracite">si concordano in base alle singole esigenze</strong>{' '}
+              dell&apos;inquilino. Ogni situazione è valutata individualmente dal locatore.
             </p>
             <p>
-              Tutti i coinquilini{' '}
-              <strong className="text-anthracite">condividono la responsabilità contrattuale</strong> e la
-              gestione delle spese. È richiesta pertanto piena collaborazione e accordo tra i candidati
-              selezionati.
+              Le <strong className="text-anthracite">utenze sono a carico dell&apos;inquilino</strong>: luce,
+              gas e acqua vengono gestite direttamente dall&apos;affittuario. Le modalità operative vengono
+              definite al momento della firma del contratto.
             </p>
           </div>
         </motion.div>

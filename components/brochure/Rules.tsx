@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { CigaretteOff, PawPrint, Clock, Wrench, Paintbrush, Users } from 'lucide-react'
 
 const rules = [
-  { icon: CigaretteOff, text: "Vietato fumare all'interno dell'appartamento" },
+  { icon: CigaretteOff, text: "Vietato fumare all'interno degli appartamenti" },
   { icon: PawPrint, text: 'Animali domestici non ammessi' },
   { icon: Clock, text: 'Rispetto degli orari di silenzio: 22:00 – 08:00' },
   { icon: Wrench, text: 'Manutenzione ordinaria degli spazi comuni a carico dei coinquilini' },
@@ -19,7 +19,7 @@ export function Rules() {
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Convivenza</p>
           <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Regole della Casa</h2>
           <p className="font-sans text-text-secondary max-w-xl mx-auto">
-            Per garantire un&apos;esperienza piacevole a tutti i coinquilini, chiediamo il rispetto di alcune semplici regole.
+            Per garantire un&apos;esperienza piacevole negli appartamenti, chiediamo il rispetto di alcune semplici regole.
           </p>
         </div>
 

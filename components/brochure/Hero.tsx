@@ -54,7 +54,7 @@ export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6"
         >
-          Appartamento di Pregio
+          Appartamenti di Pregio
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -62,7 +62,7 @@ export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-sans text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10"
         >
-          Eleganza e comfort nel cuore della città. Completamente arredato, classe energetica A++, cucina SMEG.
+          Eleganza e comfort nel cuore della città. Completamente arredati, classe energetica A++, cucine SMEG.
         </motion.p>
         <motion.div
           initial={{ opacity: 0 }}
@@ -71,10 +71,10 @@ export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
           className="flex gap-4 justify-center flex-wrap"
         >
           <a
-            href="#appartamento"
+            href="#appartamenti"
             className="bg-gold hover:bg-gold/90 text-white font-sans font-medium px-8 py-3.5 rounded-full transition-all hover:scale-105 active:scale-95"
           >
-            Scopri l&apos;appartamento
+            Scopri gli appartamenti
           </a>
           <a
             href="#candidatura"

@@ -23,11 +23,11 @@ export function Overview() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">L&apos;immobile</p>
-          <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">L&apos;Appartamento</h2>
+          <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Gli immobili</p>
+          <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Gli Appartamenti</h2>
           <p className="font-sans text-text-secondary max-w-2xl mx-auto text-base leading-relaxed">
-            Un appartamento di pregio nel cuore del centro storico di Reggio Emilia. Primo piano con ascensore,
-            completamente arredato con materiali di qualità e dotazioni di prima scelta.
+            Appartamenti di pregio nel cuore del centro storico di Reggio Emilia. Primo piano con ascensore,
+            completamente arredati con materiali di qualità e dotazioni di prima scelta.
           </p>
         </motion.div>
 
