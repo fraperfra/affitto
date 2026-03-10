@@ -3,19 +3,37 @@ import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { ArrowLeft, Images } from 'lucide-react'
-import { PhotoSection } from '@/components/admin/foto/PhotoSection'
+import { PhotoTabs } from '@/components/admin/foto/PhotoTabs'
 import type { DBPhoto } from '@/components/admin/foto/PhotoSection'
 
-const SECTIONS = [
-  { key: 'appartamento', label: 'Appartamento — Hero (slideshow principale)' },
-  { key: 'galleria', label: 'Galleria Fotografica (sezione dedicata)' },
-  { key: 'camera-1', label: 'Camera 1 + Bagno Privato' },
-  { key: 'camera-2', label: 'Camera 2' },
-  { key: 'camera-3', label: 'Camera 3' },
-  { key: 'cucina', label: 'Cucina' },
-  { key: 'soggiorno', label: 'Soggiorno' },
-  { key: 'bagno-condiviso', label: 'Bagno Condiviso' },
-]
+const APARTMENT_SECTIONS = {
+  app1: [
+    { key: 'app1-hero', label: '🖼 Hero / Cover' },
+    { key: 'app1-camera-1', label: '🛏 Camera 1' },
+    { key: 'app1-camera-2', label: '🛏 Camera 2' },
+    { key: 'app1-camera-3', label: '🛏 Camera 3' },
+    { key: 'app1-cucina', label: '🍳 Cucina' },
+    { key: 'app1-soggiorno', label: '🛋 Soggiorno' },
+    { key: 'app1-bagno-1', label: '🚿 Bagno 1' },
+    { key: 'app1-bagno-2', label: '🛁 Bagno 2' },
+    { key: 'app1-planimetria', label: '🗺 Planimetria' },
+  ],
+  app2: [
+    { key: 'app2-hero', label: '🖼 Hero / Cover' },
+    { key: 'app2-camera', label: '🛏 Camera da Letto' },
+    { key: 'app2-cucina', label: '🍳 Cucina' },
+    { key: 'app2-salotto', label: '🛋 Salotto' },
+    { key: 'app2-bagno-1', label: '🚿 Bagno En-Suite' },
+    { key: 'app2-bagno-2', label: '🚿 Bagno 2' },
+    { key: 'app2-terrazzo', label: '🌿 Terrazzo' },
+    { key: 'app2-lavanderia', label: '🧺 Lavanderia' },
+    { key: 'app2-planimetria', label: '🗺 Planimetria' },
+  ],
+  comune: [
+    { key: 'galleria', label: '🖼 Galleria Fotografica' },
+    { key: 'spazi-comuni', label: '🏠 Spazi Comuni' },
+  ],
+}
 
 export default async function FotoPage() {
   const supabase = await createClient()
@@ -29,12 +47,12 @@ export default async function FotoPage() {
     .order('is_cover', { ascending: false })
     .order('order', { ascending: true })
 
-  const grouped: Record<string, DBPhoto[]> = {}
-  for (const s of SECTIONS) {
-    grouped[s.key] = (allPhotos ?? []).filter((p: DBPhoto) => p.section === s.key)
-  }
+  const photosBySection = (allPhotos ?? []).reduce<Record<string, DBPhoto[]>>((acc, p) => {
+    if (!acc[p.section]) acc[p.section] = []
+    acc[p.section].push(p)
+    return acc
+  }, {})
 
-  // Server Actions
   async function deletePhoto(photoId: string, storagePath: string) {
     'use server'
     const admin = createAdminClient()
@@ -42,6 +60,8 @@ export default async function FotoPage() {
     await admin.from('photos').delete().eq('id', photoId)
     revalidatePath('/admin/foto')
     revalidatePath('/')
+    revalidatePath('/appartamento/1')
+    revalidatePath('/appartamento/2')
   }
 
   async function setCover(photoId: string, section: string) {
@@ -51,6 +71,8 @@ export default async function FotoPage() {
     await admin.from('photos').update({ is_cover: true }).eq('id', photoId)
     revalidatePath('/admin/foto')
     revalidatePath('/')
+    revalidatePath('/appartamento/1')
+    revalidatePath('/appartamento/2')
   }
 
   async function reorderPhotos(section: string, orderedIds: string[]) {
@@ -63,6 +85,8 @@ export default async function FotoPage() {
     )
     revalidatePath('/admin/foto')
     revalidatePath('/')
+    revalidatePath('/appartamento/1')
+    revalidatePath('/appartamento/2')
   }
 
   async function addPhotoRecord(section: string, storagePath: string, url: string) {
@@ -80,6 +104,8 @@ export default async function FotoPage() {
     })
     revalidatePath('/admin/foto')
     revalidatePath('/')
+    revalidatePath('/appartamento/1')
+    revalidatePath('/appartamento/2')
   }
 
   const totalPhotos = (allPhotos ?? []).length
@@ -87,10 +113,7 @@ export default async function FotoPage() {
   return (
     <div className="min-h-screen bg-stone-50">
       <header className="bg-white border-b border-stone-100 px-6 py-4 flex items-center justify-between">
-        <Link
-          href="/admin/dashboard"
-          className="flex items-center gap-2 text-sm font-sans text-text-secondary hover:text-anthracite transition-colors"
-        >
+        <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-sans text-text-secondary hover:text-anthracite transition-colors">
           <ArrowLeft size={16} /> Torna alla dashboard
         </Link>
         <div className="flex items-center gap-2 text-sm font-sans text-text-secondary">
@@ -107,20 +130,14 @@ export default async function FotoPage() {
           </p>
         </div>
 
-        <div className="space-y-4">
-          {SECTIONS.map(section => (
-            <PhotoSection
-              key={section.key}
-              sectionKey={section.key}
-              sectionLabel={section.label}
-              photos={grouped[section.key]}
-              deletePhoto={deletePhoto}
-              setCover={setCover}
-              addPhotoRecord={addPhotoRecord}
-              reorderPhotos={reorderPhotos}
-            />
-          ))}
-        </div>
+        <PhotoTabs
+          sections={APARTMENT_SECTIONS}
+          photosBySection={photosBySection}
+          deletePhoto={deletePhoto}
+          setCover={setCover}
+          addPhotoRecord={addPhotoRecord}
+          reorderPhotos={reorderPhotos}
+        />
       </main>
     </div>
   )
