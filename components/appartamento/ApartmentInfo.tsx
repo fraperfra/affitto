@@ -4,8 +4,8 @@ const AMENITY_ICONS: Record<string, string> = {
   'Wi-Fi incluso': '📶',
   'Completamente arredato': '🛋',
   'Riscaldamento autonomo': '🌡',
-  'Lavatrice': '🧺',
-  'Lavatrice in lavanderia privata': '🧺',
+  'Lavasciuga': '🧺',
+  'Lavasciuga in lavanderia privata': '🧺',
   'Cucina equipaggiata': '🍳',
   'Terrazzo privato': '🌿',
 }

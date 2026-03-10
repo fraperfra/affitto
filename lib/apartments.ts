@@ -30,7 +30,7 @@ export const apartments: Apartment[] = [
     longDescription: 'Spazioso e luminoso, l\'Appartamento 1 offre tre camere da letto indipendenti, due bagni, una grande cucina abitabile e un soggiorno confortevole. Ideale per famiglie o coinquilini che cercano spazio e comfort. L\'appartamento viene consegnato completamente arredato; qualora l\'affittuario preferisse arredarlo autonomamente, è possibile concordarlo con il locatore.',
     price: 1200,
     floor: 'Primo piano',
-    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice', 'Cucina equipaggiata'],
+    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavasciuga', 'Cucina equipaggiata'],
     details: [
       { label: 'Piano', value: '1°' },
       { label: 'Camere da letto', value: '3' },
@@ -38,11 +38,11 @@ export const apartments: Apartment[] = [
       { label: 'Cucina', value: 'Abitabile' },
     ],
     rooms: [
-      { id: 'camera-1', name: 'Camera 1', description: 'Camera matrimoniale luminosa con ampio armadio.', photoSection: 'app1-camera-1', icon: '🛏' },
-      { id: 'camera-2', name: 'Camera 2', description: 'Camera doppia con affaccio interno.', photoSection: 'app1-camera-2', icon: '🛏' },
+      { id: 'camera-1', name: 'Camera 1', description: 'Camera matrimoniale luminosa.', photoSection: 'app1-camera-1', icon: '🛏' },
+      { id: 'camera-2', name: 'Camera 2', description: 'Seconda Camera matrimoniale.', photoSection: 'app1-camera-2', icon: '🛏' },
       { id: 'camera-3', name: 'Camera 3', description: 'Camera singola o studio, versatile e accogliente.', photoSection: 'app1-camera-3', icon: '🛏' },
-      { id: 'cucina', name: 'Cucina Abitabile', description: 'Cucina grande con zona pranzo separata.', photoSection: 'app1-cucina', icon: '🍳' },
-      { id: 'soggiorno', name: 'Soggiorno', description: 'Soggiorno spazioso con divano e TV.', photoSection: 'app1-soggiorno', icon: '🛋' },
+      { id: 'cucina', name: 'Cucina Abitabile', description: 'Cucina grande con soggiorno separato.', photoSection: 'app1-cucina', icon: '🍳' },
+      { id: 'soggiorno', name: 'Soggiorno', description: 'Soggiorno spazioso con divano e Tavolo da pranzo.', photoSection: 'app1-soggiorno', icon: '🛋' },
       { id: 'bagno-1', name: 'Bagno 1', description: 'Bagno completo con doccia.', photoSection: 'app1-bagno-1', icon: '🚿' },
       { id: 'bagno-2', name: 'Bagno 2', description: 'Secondo bagno con vasca.', photoSection: 'app1-bagno-2', icon: '🛁' },
     ],
@@ -57,7 +57,7 @@ export const apartments: Apartment[] = [
     longDescription: 'L\'Appartamento 2 è una soluzione elegante e funzionale: camera da letto con bagno en-suite, un secondo bagno, cucina abitabile, salotto, lavanderia privata, terrazzo e anticamera. Perfetto per chi cerca un nido accogliente con spazi ben organizzati. L\'appartamento viene consegnato completamente arredato; qualora l\'affittuario preferisse arredarlo autonomamente, è possibile concordarlo con il locatore.',
     price: 1100,
     floor: 'Primo piano',
-    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavatrice in lavanderia privata', 'Terrazzo privato', 'Cucina equipaggiata'],
+    amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavasciuga in lavanderia privata', 'Terrazzo privato', 'Cucina equipaggiata'],
     details: [
       { label: 'Piano', value: '1°' },
       { label: 'Camera da letto', value: '1 (en-suite)' },
