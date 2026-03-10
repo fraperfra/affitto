@@ -8,7 +8,6 @@ const statoConfig: Record<StatoCandidatura, { label: string; className: string }
 }
 
 const statusConfig: Record<StatusCandidato, { label: string; className: string }> = {
-  studente:   { label: 'Studente',   className: 'bg-purple-100 text-purple-700' },
   lavoratore: { label: 'Lavoratore', className: 'bg-cyan-100 text-cyan-700' },
   autonomo:   { label: 'Autonomo',   className: 'bg-orange-100 text-orange-700' },
   altro:      { label: 'Altro',      className: 'bg-stone-100 text-stone-600' },
