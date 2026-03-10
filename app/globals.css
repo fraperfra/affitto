@@ -54,6 +54,7 @@
     user-select: none;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
+    -webkit-touch-callout: none; /* iOS: blocca "Salva immagine" al long-press */
     pointer-events: none;
   }
 

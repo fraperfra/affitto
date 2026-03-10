@@ -13,16 +13,9 @@ export function PhotoProtection() {
     }
     window.addEventListener('beforeprint', blockPrint)
 
-    // --- Blocca tasto destro sull'intera pagina ---
+    // --- Blocca tasto destro su tutta la pagina ---
     const blockContextMenu = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      if (
-        target.tagName === 'IMG' ||
-        target.closest('[data-protected]') ||
-        target.closest('.yarl__slide')
-      ) {
-        e.preventDefault()
-      }
+      e.preventDefault()
     }
 
     // --- Blocca drag delle immagini ---
@@ -55,16 +48,26 @@ export function PhotoProtection() {
       }
     }
 
+    // --- Blocca long-press su mobile (touchstart prolungato) ---
+    const blockTouchHold = (e: TouchEvent) => {
+      const target = e.target as HTMLElement
+      if (target.tagName === 'IMG' || target.closest('[data-protected]')) {
+        e.preventDefault()
+      }
+    }
+
     document.addEventListener('contextmenu', blockContextMenu)
     document.addEventListener('dragstart', blockDrag)
     document.addEventListener('keydown', blockShortcuts)
     document.addEventListener('selectstart', blockSelectStart)
+    document.addEventListener('touchstart', blockTouchHold, { passive: false })
 
     return () => {
       document.removeEventListener('contextmenu', blockContextMenu)
       document.removeEventListener('dragstart', blockDrag)
       document.removeEventListener('keydown', blockShortcuts)
       document.removeEventListener('selectstart', blockSelectStart)
+      document.removeEventListener('touchstart', blockTouchHold)
       window.removeEventListener('beforeprint', blockPrint)
     }
   }, [])
