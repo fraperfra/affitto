@@ -29,6 +29,9 @@ export function Overview() {
             Appartamenti di pregio nel cuore del centro storico di Reggio Emilia. Primo piano con ascensore,
             completamente arredati con materiali di qualità e dotazioni di prima scelta.
           </p>
+          <p className="font-sans text-sm text-text-secondary max-w-xl mx-auto mt-3 bg-stone-100 border border-stone-200 rounded-xl px-5 py-3">
+            🛋 <strong className="text-anthracite">Consegnati completamente arredati.</strong> Su richiesta è possibile concordare con il locatore la consegna non arredata.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">

@@ -39,6 +39,15 @@ export function ApartmentInfo({ apartment }: { apartment: Apartment }) {
           </div>
         </div>
 
+        {/* Nota arredo */}
+        <div className="mb-10 bg-stone-100 border border-stone-200 rounded-xl px-5 py-4 flex items-start gap-3">
+          <span className="text-xl shrink-0">🛋</span>
+          <p className="font-sans text-sm text-anthracite leading-relaxed">
+            <strong>Consegnato completamente arredato.</strong>{' '}
+            Qualora l&apos;affittuario preferisse arredarlo autonomamente, è possibile concordarlo con il locatore.
+          </p>
+        </div>
+
         {/* Dotazioni */}
         <div>
           <p className="font-sans text-gold uppercase tracking-[0.2em] text-xs mb-4">Dotazioni</p>
