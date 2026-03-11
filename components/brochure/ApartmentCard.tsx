@@ -31,6 +31,7 @@ export function ApartmentCard({ apartment, coverPhoto, delay = 0 }: Props) {
             alt={coverPhoto.alt}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center">

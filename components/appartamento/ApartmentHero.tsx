@@ -17,7 +17,7 @@ export function ApartmentHero({ photos, name }: { photos: PhotoConfig[]; name: s
 
   return (
     <div className="relative h-[60vh] overflow-hidden bg-anthracite">
-      <Image src={photos[current].src} alt={photos[current].alt} fill className="object-cover opacity-90" priority />
+      <Image src={photos[current].src} alt={photos[current].alt} fill className="object-cover opacity-90" priority sizes="100vw" />
       <div className="absolute inset-0 bg-gradient-to-b from-anthracite/40 to-transparent" />
 
       <Link

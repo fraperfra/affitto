@@ -66,7 +66,6 @@ export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, d
                     fill
                     className="object-cover"
                     sizes="100vw"
-                    priority={i === 0}
                   />
                 </div>
               ))}
@@ -79,8 +78,7 @@ export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, d
                 alt={photos[0].alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="50vw"
-                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               {photos.length > 1 && (
                 <div className="absolute bottom-3 right-3 bg-black/60 text-white font-sans text-xs px-2.5 py-1 rounded-full">
