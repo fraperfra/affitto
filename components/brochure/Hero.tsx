@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import type { PhotoConfig } from '@/lib/photos'
 
@@ -40,36 +39,16 @@ export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
       <div className="absolute inset-0 bg-black/45" />
 
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="font-sans text-gold uppercase tracking-[0.3em] text-sm mb-4"
-        >
+        <p className="font-sans text-gold uppercase tracking-[0.3em] text-sm mb-4">
           Centro Storico · Reggio Emilia
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6"
-        >
+        </p>
+        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6">
           Appartamenti di Pregio
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-sans text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10"
-        >
+        </h1>
+        <p className="font-sans text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10">
           Eleganza e comfort nel cuore della città. Completamente arredati, classe energetica A++, cucine SMEG.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex gap-4 justify-center flex-wrap"
-        >
+        </p>
+        <div className="flex gap-4 justify-center flex-wrap">
           <a
             href="#appartamenti"
             className="bg-gold hover:bg-gold/90 text-white font-sans font-medium px-8 py-3.5 rounded-full transition-all hover:scale-105 active:scale-95"
@@ -82,16 +61,12 @@ export function Hero({ photos: heroPhotos }: { photos: PhotoConfig[] }) {
           >
             Invia candidatura
           </a>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60"
-      >
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60">
         <ChevronDown size={28} />
-      </motion.div>
+      </div>
 
       {heroPhotos.length > 1 && (
         <div className="absolute bottom-8 right-8 flex gap-2">

@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { PhotoGallery } from './PhotoGallery'
 import { DetailModal } from './DetailModal'
@@ -31,13 +30,7 @@ function SpaceCard({ space, index, allPhotos }: { space: typeof spaces[0]; index
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Testo */}
         <div className={index % 2 === 1 ? 'md:order-2' : ''}>
           <h3 className="font-serif text-2xl text-anthracite mb-3">{space.title}</h3>
@@ -114,7 +107,7 @@ function SpaceCard({ space, index, allPhotos }: { space: typeof spaces[0]; index
             </>
           )}
         </div>
-      </motion.div>
+      </div>
 
       {/* Modal dettaglio */}
       <DetailModal open={open} onClose={() => setOpen(false)} title={space.title}>

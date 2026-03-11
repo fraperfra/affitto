@@ -1,7 +1,5 @@
-'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { BedDouble, Bath, ArrowRight } from 'lucide-react'
 import type { Apartment } from '@/lib/apartments'
 import type { PhotoConfig } from '@/lib/photos'
@@ -17,13 +15,7 @@ export function ApartmentCard({ apartment, coverPhoto, delay = 0 }: Props) {
   const bathroomCount = apartment.rooms.filter(r => r.id.startsWith('bagno')).length
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-stone-100"
-    >
+    <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-stone-100">
       <div className="relative h-56 overflow-hidden bg-stone-100">
         {coverPhoto ? (
           <Image
@@ -74,6 +66,6 @@ export function ApartmentCard({ apartment, coverPhoto, delay = 0 }: Props) {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

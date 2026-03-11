@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Room } from '@/lib/apartments'
 import type { AllPhotos } from '@/lib/photos-db'
@@ -21,10 +20,7 @@ function RoomGallery({
   const next = () => setIndex(i => (i + 1) % photos.length)
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
       onClick={onClose}
     >
@@ -86,7 +82,7 @@ function RoomGallery({
           {index + 1} / {photos.length}
         </p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -101,16 +97,12 @@ export function ApartmentRooms({ rooms, allPhotos }: { rooms: Room[]; allPhotos:
         <p className="font-sans text-gold uppercase tracking-[0.2em] text-xs mb-3">Spazi</p>
         <h2 className="font-serif text-3xl text-anthracite mb-8">Suddivisione degli ambienti</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {rooms.map((room, i) => {
+          {rooms.map((room) => {
             const cover = (allPhotos[room.photoSection] ?? [])[0]
             const hasPhotos = (allPhotos[room.photoSection] ?? []).length > 0
             return (
-              <motion.div
+              <div
                 key={room.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
                 onClick={() => hasPhotos && setActiveRoom(room)}
                 className={`bg-white rounded-xl overflow-hidden border border-stone-100 shadow-sm transition-all ${
                   hasPhotos ? 'cursor-pointer hover:shadow-md hover:-translate-y-0.5' : ''
@@ -118,7 +110,7 @@ export function ApartmentRooms({ rooms, allPhotos }: { rooms: Room[]; allPhotos:
               >
                 <div className="relative h-40 bg-stone-100">
                   {cover
-                    ? <Image src={cover.src} alt={cover.alt} fill className="object-cover" />
+                    ? <Image src={cover.src} alt={cover.alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
                     : <div className="w-full h-full flex items-center justify-center text-3xl">{room.icon}</div>
                   }
                   {hasPhotos && (
@@ -143,21 +135,19 @@ export function ApartmentRooms({ rooms, allPhotos }: { rooms: Room[]; allPhotos:
                   </div>
                   <p className="font-sans text-sm text-stone-500">{room.description}</p>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>
       </div>
 
-      <AnimatePresence>
-        {activeRoom && activePhotos.length > 0 && (
-          <RoomGallery
-            room={activeRoom}
-            photos={activePhotos}
-            onClose={() => setActiveRoom(null)}
-          />
-        )}
-      </AnimatePresence>
+      {activeRoom && activePhotos.length > 0 && (
+        <RoomGallery
+          room={activeRoom}
+          photos={activePhotos}
+          onClose={() => setActiveRoom(null)}
+        />
+      )}
     </section>
   )
 }

@@ -1,5 +1,3 @@
-'use client'
-import { motion } from 'framer-motion'
 import { CigaretteOff, PawPrint, Clock, Wrench, Paintbrush, Users } from 'lucide-react'
 
 const rules = [
@@ -25,17 +23,13 @@ export function Rules() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {rules.map(({ icon: Icon, text }, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
               className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm border border-stone-100"
             >
               <Icon size={20} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
               <p className="font-sans text-sm text-anthracite leading-relaxed">{text}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

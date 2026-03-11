@@ -1,5 +1,4 @@
 'use client'
-import { motion } from 'framer-motion'
 import { AlertTriangle, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 
@@ -37,12 +36,7 @@ export function ContractInfo() {
           <h2 className="font-serif text-3xl md:text-5xl text-anthracite mb-4">Contratto e Utenze</h2>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-amber-50 border border-amber-200 rounded-2xl p-8 mb-10"
-        >
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8 mb-10">
           <div className="flex items-start gap-4 mb-4">
             <AlertTriangle size={22} className="text-amber-600 mt-0.5 shrink-0" strokeWidth={1.5} />
             <h3 className="font-serif text-xl text-anthracite">Da leggere prima di candidarsi</h3>
@@ -59,16 +53,12 @@ export function ContractInfo() {
               definite al momento della firma del contratto.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
               className="bg-white rounded-xl border border-stone-100 overflow-hidden"
             >
               <button
@@ -86,7 +76,7 @@ export function ContractInfo() {
                   {faq.a}
                 </div>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

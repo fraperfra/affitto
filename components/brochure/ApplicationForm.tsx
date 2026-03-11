@@ -2,7 +2,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 import type { AppartamentoPreferito } from '@/lib/types'
 import { candidaturaSchema, type CandidaturaFormData } from '@/lib/validations/candidatura'
@@ -58,17 +57,13 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
     return (
       <section id="candidatura" className="py-8 px-4 bg-stone-50">
         <div className="max-w-2xl mx-auto text-center">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring' }}
-          >
+          <div>
             <CheckCircle2 size={64} className="text-green-500 mx-auto mb-4" strokeWidth={1.5} />
             <h2 className="font-serif text-3xl text-anthracite mb-3">Candidatura inviata!</h2>
             <p className="font-sans text-text-secondary">
               Grazie per il tuo interesse. Ti contatteremo presto.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
     )
@@ -196,11 +191,7 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
 
           {/* Campi condizionali — Lavoratore dipendente */}
           {status === 'lavoratore' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              className="space-y-4"
-            >
+            <div className="space-y-4">
               <div>
                 <label className={labelClass}>Tipologia di contratto *</label>
                 <select {...register('tipo_contratto')} className={inputClass}>
@@ -221,16 +212,12 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
                 />
                 <FieldError message={errors.nome_azienda?.message} />
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Campi condizionali — Lavoratore autonomo */}
           {status === 'autonomo' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              className="space-y-4"
-            >
+            <div className="space-y-4">
               <div>
                 <label className={labelClass}>Tipo di attività *</label>
                 <input
@@ -249,7 +236,7 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
                 />
                 <FieldError message={errors.settore?.message} />
               </div>
-            </motion.div>
+            </div>
           )}
 
 

@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { Bath, Euro, ChevronRight, Camera } from 'lucide-react'
 import { PhotoGallery } from './PhotoGallery'
 import { DetailModal } from './DetailModal'
@@ -29,11 +28,7 @@ export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, d
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay }}
+      <div
         className="bg-white rounded-xl shadow-sm border border-stone-100 overflow-hidden cursor-pointer group"
         onClick={() => setOpen(true)}
         role="button"
@@ -132,7 +127,7 @@ export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, d
             <ChevronRight size={13} />
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Modal dettaglio */}
       <DetailModal open={open} onClose={() => setOpen(false)} title={name}>
