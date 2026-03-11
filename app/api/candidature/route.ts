@@ -24,7 +24,10 @@ export async function POST(req: NextRequest) {
     const { website: _website, ...data } = parsed.data
     const supabase = createAdminClient()
     const { error } = await supabase.from('candidature').insert([data])
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error:', JSON.stringify(error))
+      return NextResponse.json({ error: `DB: ${error.message} (code: ${error.code})` }, { status: 500 })
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {
