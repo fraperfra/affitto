@@ -36,6 +36,10 @@ export function ApartmentInfo({ apartment }: { apartment: Apartment }) {
               <span className="font-sans text-sm text-stone-500">Affitto mensile</span>
               <span className="font-serif text-lg font-medium text-anthracite">€ {apartment.price.toLocaleString('it-IT')}</span>
             </div>
+            <div className="flex justify-between border-b border-stone-100 pb-2">
+              <span className="font-sans text-sm text-stone-500">Spese condominio</span>
+              <span className="font-sans text-sm font-medium text-anthracite">+ € {apartment.condominiumFee.toLocaleString('it-IT')}</span>
+            </div>
           </div>
         </div>
 

@@ -13,6 +13,7 @@ export interface Apartment {
   description: string
   longDescription: string
   price: number
+  condominiumFee: number
   floor: string
   amenities: string[]
   details: { label: string; value: string }[]
@@ -29,6 +30,7 @@ export const apartments: Apartment[] = [
     description: 'Ampio appartamento con 3 camere da letto, soggiorno e cucina abitabile.',
     longDescription: 'Spazioso e luminoso, l\'Appartamento 1 offre tre camere da letto indipendenti, due bagni, una grande cucina abitabile e un soggiorno confortevole. Ideale per famiglie o coinquilini che cercano spazio e comfort. L\'appartamento viene consegnato completamente arredato; qualora l\'affittuario preferisse arredarlo autonomamente, è possibile concordarlo con il locatore.',
     price: 1200,
+    condominiumFee: 120,
     floor: 'Primo piano',
     amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavasciuga', 'Cucina equipaggiata'],
     details: [
@@ -56,6 +58,7 @@ export const apartments: Apartment[] = [
     description: 'Appartamento con terrazza in camera da letto, bagno en-suite, secondo bagno, lavanderia, cucina abitabile e ampio salotto.',
     longDescription: 'L\'Appartamento 2 è una soluzione elegante e funzionale: camera da letto con bagno en-suite, un secondo bagno, cucina abitabile, salotto, lavanderia privata, terrazzo e anticamera. Perfetto per chi cerca un nido accogliente con spazi ben organizzati. L\'appartamento viene consegnato completamente arredato; qualora l\'affittuario preferisse arredarlo autonomamente, è possibile concordarlo con il locatore.',
     price: 1100,
+    condominiumFee: 120,
     floor: 'Primo piano',
     amenities: ['Completamente arredato', 'Riscaldamento autonomo', 'Lavasciuga in lavanderia privata', 'Terrazzo privato', 'Cucina equipaggiata'],
     details: [
