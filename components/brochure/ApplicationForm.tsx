@@ -56,7 +56,7 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
 
   if (submitted) {
     return (
-      <section id="candidatura" className="py-16 px-4 bg-stone-50">
+      <section id="candidatura" className="py-8 px-4 bg-stone-50">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -75,7 +75,7 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
   }
 
   return (
-    <section id="candidatura" className="py-16 px-4 bg-stone-50">
+    <section id="candidatura" className="py-8 px-4 bg-stone-50">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Candidati ora</p>

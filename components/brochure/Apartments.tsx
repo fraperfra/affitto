@@ -4,7 +4,7 @@ import type { AllPhotos } from '@/lib/photos-db'
 
 export function Apartments({ allPhotos }: { allPhotos: AllPhotos }) {
   return (
-    <section id="appartamenti" className="py-16 px-4 bg-ivory">
+    <section id="appartamenti" className="py-8 px-4 bg-ivory">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Disponibilità</p>

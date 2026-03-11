@@ -14,7 +14,7 @@ const features = [
 
 export function Overview() {
   return (
-    <section id="appartamento" className="py-16 px-4 bg-ivory">
+    <section id="appartamento" className="py-8 px-4 bg-ivory">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

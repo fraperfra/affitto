@@ -13,7 +13,7 @@ const rules = [
 
 export function Rules() {
   return (
-    <section id="regole" className="py-16 px-4 bg-ivory">
+    <section id="regole" className="py-8 px-4 bg-ivory">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-sans text-gold uppercase tracking-[0.25em] text-xs mb-3">Convivenza</p>
