@@ -274,7 +274,7 @@ export function ApplicationForm({ defaultAppartamento }: { defaultAppartamento?:
               />
               <span className="font-sans text-sm text-text-secondary">
                 Ho letto e accetto la{' '}
-                <a href="#" className="text-gold hover:underline">
+                <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
                   privacy policy
                 </a>{' '}
                 e acconsento al trattamento dei dati personali ai sensi del GDPR *

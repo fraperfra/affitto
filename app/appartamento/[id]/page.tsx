@@ -6,6 +6,7 @@ import { ApartmentHero } from '@/components/appartamento/ApartmentHero'
 import { ApartmentInfo } from '@/components/appartamento/ApartmentInfo'
 import { ApartmentRooms } from '@/components/appartamento/ApartmentRooms'
 import { FloorPlan } from '@/components/appartamento/FloorPlan'
+import { EntryCostCalculator } from '@/components/appartamento/EntryCostCalculator'
 import { ApplicationForm } from '@/components/brochure/ApplicationForm'
 
 interface Props {
@@ -36,6 +37,7 @@ export default async function ApartmentPage({ params }: Props) {
       <main>
         <ApartmentHero photos={allPhotos[apartment.heroSection] ?? []} name={apartment.name} />
         <ApartmentInfo apartment={apartment} />
+        <EntryCostCalculator price={apartment.price} />
         <ApartmentRooms rooms={apartment.rooms} allPhotos={allPhotos} />
         <FloorPlan photos={allPhotos[apartment.planimetriaSection] ?? []} />
         <ApplicationForm
