@@ -37,9 +37,9 @@ export default async function ApartmentPage({ params }: Props) {
       <main>
         <ApartmentHero photos={allPhotos[apartment.heroSection] ?? []} name={apartment.name} />
         <ApartmentInfo apartment={apartment} />
-        <EntryCostCalculator price={apartment.price} />
         <ApartmentRooms rooms={apartment.rooms} allPhotos={allPhotos} />
         <FloorPlan photos={allPhotos[apartment.planimetriaSection] ?? []} />
+        <EntryCostCalculator price={apartment.price} />
         <ApplicationForm
           defaultAppartamento={apartment.id === '1' ? 'appartamento_1' : 'appartamento_2'}
         />
