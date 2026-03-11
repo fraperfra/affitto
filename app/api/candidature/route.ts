@@ -28,7 +28,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('Errore salvataggio candidatura:', err)
-    return NextResponse.json({ error: 'Errore interno del server' }, { status: 500 })
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('Errore salvataggio candidatura:', message)
+    return NextResponse.json({ error: `Errore interno: ${message}` }, { status: 500 })
   }
 }
