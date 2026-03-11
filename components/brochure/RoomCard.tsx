@@ -14,10 +14,9 @@ interface Props {
   expenses: number
   photos: PhotoConfig[]
   description?: string
-  delay?: number
 }
 
-export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, description, delay = 0 }: Props) {
+export function RoomCard({ name, bathType, sharedWith, rent, expenses, photos, description }: Props) {
   const [open, setOpen] = useState(false)
   const total = rent + expenses
 

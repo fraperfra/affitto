@@ -14,12 +14,11 @@ export function Apartments({ allPhotos }: { allPhotos: AllPhotos }) {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {apartments.map((apt, i) => (
+          {apartments.map((apt) => (
             <ApartmentCard
               key={apt.id}
               apartment={apt}
               coverPhoto={(allPhotos[apt.heroSection] ?? [])[0]}
-              delay={i * 0.1}
             />
           ))}
         </div>

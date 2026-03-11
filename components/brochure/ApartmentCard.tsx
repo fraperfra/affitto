@@ -7,10 +7,9 @@ import type { PhotoConfig } from '@/lib/photos'
 interface Props {
   apartment: Apartment
   coverPhoto?: PhotoConfig
-  delay?: number
 }
 
-export function ApartmentCard({ apartment, coverPhoto, delay = 0 }: Props) {
+export function ApartmentCard({ apartment, coverPhoto }: Props) {
   const bedroomCount = apartment.rooms.filter(r => r.id.startsWith('camera')).length
   const bathroomCount = apartment.rooms.filter(r => r.id.startsWith('bagno')).length
 
